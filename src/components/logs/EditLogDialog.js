@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import M from 'materialize-css/dist/js/materialize';
 
-const AddLogDialog = () => {
+const EditLogDialog = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
@@ -11,16 +11,15 @@ const AddLogDialog = () => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please complete all fields' });
     }
-
     setAttention(false);
     setMessage('');
     setTech('');
   };
 
   return (
-    <div id="add-log-modal" className="modal" style={style}>
+    <div id="edit-log-modal" className="modal" style={style}>
       <div className="modal-content">
-        <h4>Enter System Log</h4>
+        <h4>Edit System Log</h4>
         <div className="row">
           <div className="input-field">
             <input
@@ -86,4 +85,4 @@ const style = {
   height: '75%',
 };
 
-export default AddLogDialog;
+export default EditLogDialog;

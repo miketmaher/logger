@@ -5,7 +5,7 @@ const AddButton = () => {
     <div className="fixed-action-btn">
       <a
         href="#add-log-modal"
-        className="btn-floating btn large blue darken-2 modal-trigger"
+        className="btn-floating btn-large blue darken-2 modal-trigger"
       >
         <i className="material-icons large">add</i>
       </a>
@@ -19,7 +19,7 @@ const AddButton = () => {
           </a>
         </li>
         <li>
-          <a href="#tech-modal" className="btn-floating red modal-trigger">
+          <a href="#add-tech-modal" className="btn-floating red modal-trigger">
             <i className="material-icons">person_add</i>
           </a>
         </li>
