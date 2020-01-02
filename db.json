@@ -8,11 +8,11 @@
       "id": 1
     },
     {
-      "message": "Workstation 002 hard drive failure",
+      "id": 2,
+      "message": "Workstation 002 hard drive repaired",
+      "attention": false,
       "tech": "Sara Wilson",
-      "attention": true,
-      "date": "2020-01-02T15:03:23.999Z",
-      "id": 2
+      "date": "2020-01-02T15:51:28.204Z"
     },
     {
       "message": "Server 124 is out of memory",
