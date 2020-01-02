@@ -1,4 +1,6 @@
 import React, { Fragment, useEffect } from 'react';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 import Searchbar from './components/layout/Searchbar';
 import AddButton from './components/layout/AddButton';
 import LogList from './components/logs/LogList';
@@ -16,17 +18,19 @@ const App = () => {
     M.AutoInit();
   });
   return (
-    <Fragment>
-      <Searchbar />
-      <div className="container">
-        <AddButton />
-        <LogList />
-      </div>
-      <AddLogDialog />
-      <EditLogDialog />
-      <AddTechDialog />
-      <TechListDialog />
-    </Fragment>
+    <Provider store={store}>
+      <Fragment>
+        <Searchbar />
+        <div className="container">
+          <AddButton />
+          <LogList />
+        </div>
+        <AddLogDialog />
+        <EditLogDialog />
+        <AddTechDialog />
+        <TechListDialog />
+      </Fragment>
+    </Provider>
   );
 };
 
