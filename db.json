@@ -1,25 +1,25 @@
 {
   "logs": [
     {
-      "id": 1,
-      "message": "Changed HD on workstation 005",
+      "message": "Workstation 007 RAM upgraded",
+      "tech": "Sam Smith",
       "attention": false,
-      "date": "03-02-2019",
-      "tech": "Sam Smith"
+      "date": "2020-01-02T15:02:46.807Z",
+      "id": 1
     },
     {
-      "id": 2,
-      "message": "Workstation 007 not posting",
+      "message": "Workstation 002 hard drive failure",
+      "tech": "Sara Wilson",
       "attention": true,
-      "date": "03-02-2019",
-      "tech": "John Doe"
+      "date": "2020-01-02T15:03:23.999Z",
+      "id": 2
     },
     {
-      "id": 3,
-      "message": "Changed memory on workstation 050",
-      "attention": false,
-      "date": "03-02-2019",
-      "tech": "Sara Wilson"
+      "message": "Server 124 is out of memory",
+      "tech": "John Doe",
+      "attention": true,
+      "date": "2020-01-02T15:04:01.184Z",
+      "id": 3
     }
   ],
   "techs": [

@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize';
+import { connect } from 'react-redux';
+import { addLog } from '../../redux/actions/logActions';
 
-const AddLogDialog = () => {
+const AddLogDialog = ({ addLog }) => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
@@ -11,7 +14,14 @@ const AddLogDialog = () => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please complete all fields' });
     }
-
+    const newLog = {
+      message,
+      tech,
+      attention,
+      date: new Date(),
+    };
+    addLog(newLog);
+    M.toast({ html: `log added by ${tech}` });
     setAttention(false);
     setMessage('');
     setTech('');
@@ -86,4 +96,12 @@ const style = {
   height: '75%',
 };
 
-export default AddLogDialog;
+AddLogDialog.propTypes = {
+  addLog: PropTypes.func.isRequired,
+};
+
+const actions = {
+  addLog,
+};
+
+export default connect(null, actions)(AddLogDialog);
