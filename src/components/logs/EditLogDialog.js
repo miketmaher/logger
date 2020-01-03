@@ -22,18 +22,19 @@ const EditLogDialog = ({ current, updateLog }) => {
     e.preventDefault();
     if (message === '' || tech === '') {
       M.toast({ html: 'Please complete all fields' });
+    } else {
+      updateLog({
+        id: current.id,
+        message,
+        attention,
+        tech,
+        date: new Date(),
+      });
+      M.toast({ html: `Log update by ${tech}` });
+      setAttention(false);
+      setMessage('');
+      setTech('');
     }
-    updateLog({
-      id: current.id,
-      message,
-      attention,
-      tech,
-      date: new Date(),
-    });
-    M.toast({ html: `Log update by ${tech}` });
-    setAttention(false);
-    setMessage('');
-    setTech('');
   };
 
   return (

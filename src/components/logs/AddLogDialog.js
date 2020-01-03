@@ -14,18 +14,19 @@ const AddLogDialog = ({ addLog }) => {
     e.preventDefault();
     if (message === '' || tech === '') {
       M.toast({ html: 'Please complete all fields' });
+    } else {
+      const newLog = {
+        message,
+        tech,
+        attention,
+        date: new Date(),
+      };
+      addLog(newLog);
+      M.toast({ html: `log added by ${tech}` });
+      setAttention(false);
+      setMessage('');
+      setTech('');
     }
-    const newLog = {
-      message,
-      tech,
-      attention,
-      date: new Date(),
-    };
-    addLog(newLog);
-    M.toast({ html: `log added by ${tech}` });
-    setAttention(false);
-    setMessage('');
-    setTech('');
   };
 
   return (
