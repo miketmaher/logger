@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { updateLog } from '../../redux/actions/logActions';
 import M from 'materialize-css/dist/js/materialize';
 import TechDropdown from '../techs/TechDropdown';
 
-const EditLogDialog = ({ current, updateLog }) => {
+const EditLogDialog = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
+
+  const dispatch = useDispatch();
+
+  const current = useSelector(state => state.log.current);
 
   useEffect(() => {
     if (current) {
@@ -23,13 +26,15 @@ const EditLogDialog = ({ current, updateLog }) => {
     if (message === '' || tech === '') {
       M.toast({ html: 'Please complete all fields' });
     } else {
-      updateLog({
-        id: current.id,
-        message,
-        attention,
-        tech,
-        date: new Date(),
-      });
+      dispatch(
+        updateLog({
+          id: current.id,
+          message,
+          attention,
+          tech,
+          date: new Date(),
+        }),
+      );
       M.toast({ html: `Log update by ${tech}` });
       setAttention(false);
       setMessage('');
@@ -101,17 +106,4 @@ const style = {
   height: '75%',
 };
 
-EditLogDialog.propTypes = {
-  current: PropTypes.object,
-  updateLog: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  current: state.log.current,
-});
-
-const actions = {
-  updateLog,
-};
-
-export default connect(mapStateToProps, actions)(EditLogDialog);
+export default EditLogDialog;

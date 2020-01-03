@@ -1,13 +1,18 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Log from './Log';
 import Preloader from '../layout/Preloader';
 import { getLogs } from '../../redux/actions/logActions';
 
-const LogList = ({ log: { logs, loading }, getLogs }) => {
+const LogList = () => {
+  const log = useSelector(state => state.log);
+
+  const dispatch = useDispatch();
+
+  const { logs, loading } = log;
+
   useEffect(() => {
-    getLogs();
+    dispatch(getLogs());
   }, []);
 
   if (loading) {
@@ -28,18 +33,4 @@ const LogList = ({ log: { logs, loading }, getLogs }) => {
   );
 };
 
-LogList.propTypes = {
-  log: PropTypes.object.isRequired,
-  loading: PropTypes.bool,
-  getLogs: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  log: state.log,
-});
-
-const actions = {
-  getLogs,
-};
-
-export default connect(mapStateToProps, actions)(LogList);
+export default LogList;

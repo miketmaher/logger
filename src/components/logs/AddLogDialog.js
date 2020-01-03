@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addLog } from '../../redux/actions/logActions';
 import TechDropdown from '../techs/TechDropdown';
 
-const AddLogDialog = ({ addLog }) => {
+const AddLogDialog = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
+
+  const dispatch = useDispatch();
 
   const onSubmit = e => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const AddLogDialog = ({ addLog }) => {
         attention,
         date: new Date(),
       };
-      addLog(newLog);
+      dispatch(addLog(newLog));
       M.toast({ html: `log added by ${tech}` });
       setAttention(false);
       setMessage('');
@@ -96,12 +97,4 @@ const style = {
   height: '75%',
 };
 
-AddLogDialog.propTypes = {
-  addLog: PropTypes.func.isRequired,
-};
-
-const actions = {
-  addLog,
-};
-
-export default connect(null, actions)(AddLogDialog);
+export default AddLogDialog;
