@@ -10,7 +10,7 @@ const TechDropdown = () => {
 
   useEffect(() => {
     dispatch(getTechs());
-  }, []);
+  }, [dispatch]);
   return (
     !loading &&
     techs &&

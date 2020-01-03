@@ -13,7 +13,7 @@ const LogList = () => {
 
   useEffect(() => {
     dispatch(getLogs());
-  }, []);
+  }, [dispatch]);
 
   if (loading) {
     return <Preloader />;

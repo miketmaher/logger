@@ -11,7 +11,7 @@ const TechListDialog = () => {
 
   useEffect(() => {
     dispatch(getTechs());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div id="tech-list-modal" className="modal">
