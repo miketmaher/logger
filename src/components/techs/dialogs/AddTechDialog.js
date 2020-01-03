@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize';
-import { addTech } from '../../redux/actions/techActions';
+import { addTech } from '../../../redux/actions/techActions';
 
 const AddTechDialog = () => {
   const [firstName, setFirstName] = useState('');

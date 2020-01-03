@@ -1,29 +1,41 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateLog } from '../../../redux/actions/logActions';
 import M from 'materialize-css/dist/js/materialize';
-import { useDispatch } from 'react-redux';
-import { addLog } from '../../redux/actions/logActions';
-import TechDropdown from '../techs/TechDropdown';
+import TechDropdown from '../../techs/TechDropdown';
 
-const AddLogDialog = () => {
+const EditLogDialog = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
 
   const dispatch = useDispatch();
 
+  const current = useSelector(state => state.log.current);
+
+  useEffect(() => {
+    if (current) {
+      setMessage(current.message);
+      setAttention(current.attention);
+      setTech(current.tech);
+    }
+  }, [current]);
+
   const onSubmit = e => {
     e.preventDefault();
     if (message === '' || tech === '') {
       M.toast({ html: 'Please complete all fields' });
     } else {
-      const newLog = {
-        message,
-        tech,
-        attention,
-        date: new Date(),
-      };
-      dispatch(addLog(newLog));
-      M.toast({ html: `log added by ${tech}` });
+      dispatch(
+        updateLog({
+          id: current.id,
+          message,
+          attention,
+          tech,
+          date: new Date(),
+        }),
+      );
+      M.toast({ html: `Log update by ${tech}` });
       setAttention(false);
       setMessage('');
       setTech('');
@@ -31,9 +43,9 @@ const AddLogDialog = () => {
   };
 
   return (
-    <div id="add-log-modal" className="modal" style={style}>
+    <div id="edit-log-modal" className="modal" style={style}>
       <div className="modal-content">
-        <h4>Enter System Log</h4>
+        <h4>Edit System Log</h4>
         <div className="row">
           <div className="input-field">
             <input
@@ -42,9 +54,6 @@ const AddLogDialog = () => {
               value={message}
               onChange={e => setMessage(e.target.value)}
             />
-            <label htmlFor="message" className="active">
-              Log Message
-            </label>
           </div>
         </div>
         <div className="row">
@@ -97,4 +106,4 @@ const style = {
   height: '75%',
 };
 
-export default AddLogDialog;
+export default EditLogDialog;

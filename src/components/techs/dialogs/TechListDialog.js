@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getTechs } from '../../redux/actions/techActions';
-import Tech from './Tech';
+import { getTechs } from '../../../redux/actions/techActions';
+import Tech from '../Tech';
 
 const TechListDialog = () => {
   const tech = useSelector(state => state.tech);

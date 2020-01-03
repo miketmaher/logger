@@ -4,10 +4,8 @@ import store from './redux/store';
 import Searchbar from './components/layout/Searchbar';
 import AddButton from './components/layout/AddButton';
 import LogList from './components/logs/LogList';
-import AddLogDialog from './components/logs/AddLogDialog';
-import EditLogDialog from './components/logs/EditLogDialog';
-import AddTechDialog from './components/techs/AddTechDialog';
-import TechListDialog from './components/techs/TechListDialog';
+import { AddLogDialog, EditLogDialog } from './components/logs/dialogs';
+import { AddTechDialog, TechListDialog } from './components/techs/dialogs';
 
 import 'materialize-css/dist/css/materialize.min.css';
 import M from 'materialize-css/dist/js/materialize.min.js';
