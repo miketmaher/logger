@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import M from 'materialize-css/dist/js/materialize';
 import { connect } from 'react-redux';
 import { addLog } from '../../redux/actions/logActions';
+import TechDropdown from '../techs/TechDropdown';
 
 const AddLogDialog = ({ addLog }) => {
   const [message, setMessage] = useState('');
@@ -55,9 +56,7 @@ const AddLogDialog = ({ addLog }) => {
               <option value="" disabled>
                 Select Technician
               </option>
-              <option value="John Doe">John Doe</option>
-              <option value="Sam Smith">Sam Smith</option>
-              <option value="Sara Wilson">Sara Wilson</option>
+              <TechDropdown />
             </select>
           </div>
         </div>
