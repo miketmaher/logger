@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getTechs } from '../../redux/actions/techActions';
 import Tech from './Tech';
 
-const TechListDialog = ({ getTechs, tech: { loading, techs } }) => {
+const TechListDialog = () => {
+  const tech = useSelector(state => state.tech);
+  const { techs, loading } = tech;
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    getTechs();
+    dispatch(getTechs());
   }, []);
 
   return (
@@ -23,17 +27,4 @@ const TechListDialog = ({ getTechs, tech: { loading, techs } }) => {
   );
 };
 
-TechListDialog.propTypes = {
-  tech: PropTypes.object.isRequired,
-  getTechs: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  tech: state.tech,
-});
-
-const actions = {
-  getTechs,
-};
-
-export default connect(mapStateToProps, actions)(TechListDialog);
+export default TechListDialog;

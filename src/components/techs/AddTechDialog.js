@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import M from 'materialize-css/dist/js/materialize';
 import { addTech } from '../../redux/actions/techActions';
 
-const AddTechDialog = ({ addTech }) => {
+const AddTechDialog = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+
+  const dispatch = useDispatch();
 
   const onSubmit = e => {
     e.preventDefault();
     if (firstName === '' || lastName === '') {
       M.toast({ html: 'Please complete all fields' });
     } else {
-      addTech({
-        firstName,
-        lastName,
-      });
+      dispatch(
+        addTech({
+          firstName,
+          lastName,
+        }),
+      );
       M.toast({ html: `${firstName} ${lastName} added to technicians` });
       setFirstName('');
       setLastName('');
@@ -67,10 +70,4 @@ const AddTechDialog = ({ addTech }) => {
   );
 };
 
-AddTechDialog.propTypes = {
-  addTech: PropTypes.func.isRequired,
-};
-
-const actions = { addTech };
-
-export default connect(null, actions)(AddTechDialog);
+export default AddTechDialog;

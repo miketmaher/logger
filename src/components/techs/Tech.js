@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { deleteTech } from '../../redux/actions/techActions';
 import M from 'materialize-css/dist/js/materialize';
 
-const Tech = ({ tech: { firstName, lastName, id }, deleteTech }) => {
+const Tech = ({ tech: { firstName, lastName, id } }) => {
+  const dispatch = useDispatch();
+
   const onDelete = () => {
-    deleteTech(id);
+    dispatch(deleteTech(id));
     M.toast({ html: `${firstName} ${lastName} has been deleted` });
   };
 
@@ -24,11 +26,5 @@ const Tech = ({ tech: { firstName, lastName, id }, deleteTech }) => {
 
 Tech.propTypes = {
   tech: PropTypes.object.isRequired,
-  deleteTech: PropTypes.func.isRequired,
 };
-
-const actions = {
-  deleteTech,
-};
-
-export default connect(null, actions)(Tech);
+export default Tech;
